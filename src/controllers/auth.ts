@@ -1,21 +1,27 @@
-import { Response, Request } from "express"
-import { RegisterUser } from "../types/user";
-import HttpError from "../error/error";
+import { Response, Request, NextFunction } from "express"
+import { LoginUser, RegisterUser } from "../types/user";
 import { registerUser } from "../services/auth/register-user";
-import { request } from "http";
+import { loginUser } from "../services/auth/login-user";
 
-export const signUp = async (req: Request, res: Response) => {
-    console.log(req.body)
+export const signUpController = async (req: Request, res: Response, next: NextFunction) => {
     const userData: RegisterUser = req.body;
     try {
         const newUser = await registerUser(userData);
         res.status(201).json(newUser)
     }
     catch (error: unknown) {
-        if (error instanceof HttpError) {
-            res.status(error.status).json({ message: error.message });
-        } else {
-            res.status(500).json({ message: 'Internal Server Error' });
-        }
+        console.log(error)
+        next(error) 
     }}
 
+export const loginController = async (req: Request, res: Response, next: NextFunction) => {
+    const userData: LoginUser = req.body;
+    try {
+        const   token = await loginUser(userData);
+        res.status(200).json(token)
+    }
+    catch (error: unknown) {
+        console.log(error)
+        next(error) 
+    } 
+}

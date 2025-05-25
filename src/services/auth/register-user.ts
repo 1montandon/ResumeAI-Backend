@@ -1,6 +1,7 @@
 import prisma from "../../prisma/client";
 import { RegisterUser } from "../../types/user";
 import bcrypt from "bcrypt";
+import HttpError from "../../error/error";
 
 export async function registerUser({
   username,
@@ -19,6 +20,7 @@ export async function registerUser({
   }
 
   // Hash password
+  const hashKey = process.env.HASH_KEY || 10;
   const hashedPassword = await bcrypt.hash(password, 10);
 
   // Create user
