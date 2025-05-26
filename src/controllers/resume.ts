@@ -6,8 +6,9 @@ export const analyzeResumeController = async (req: Request, res: Response, next:
         return res.status(400).json({ error: "No file uploaded" });
     }
     const resumePath: string = req.file.path;
+    const jobDescription: string = req.body.description
     try {        
-        const analyze = await analyzeResume(resumePath)
+        const analyze = await analyzeResume(resumePath, jobDescription)
         console.log(analyze)
         res.status(201).json(analyze)
     }
