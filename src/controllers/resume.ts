@@ -1,6 +1,8 @@
 import { Response, Request, NextFunction } from "express"
 import { analyzeResume } from "../services/resume/analyze-resume";
 import { AuthRequest } from "../middlewares/auth";
+import HttpError from "../error/error";
+import { getAnalyzes } from "../services/resume/get-analyze";
 
 
 export const analyzeResumeController = async (req: AuthRequest, res: Response, next: NextFunction) => {
@@ -18,3 +20,14 @@ export const analyzeResumeController = async (req: AuthRequest, res: Response, n
         console.log(error)
         next(error) 
     }}
+
+export const getAnalyzesController = async(req: AuthRequest, res: Response, next: NextFunction) => {
+    const userID =req.userID.id
+    try{
+        const analyses = await getAnalyzes(userID)
+        res.status(200).json(analyses)
+    }catch(error: unknown){
+        next(error)
+    }
+
+}
