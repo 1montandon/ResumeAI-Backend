@@ -1,8 +1,9 @@
 import { Response, Request, NextFunction } from "express"
-import { analyzeResume } from "../services/resume/analyze-resume";
+import { analyzeResume } from "../services/analyze/analyze-resume";
 import { AuthRequest } from "../middlewares/auth";
 import HttpError from "../error/error";
-import { getAnalyzes } from "../services/resume/get-analyze";
+import { getAnalyzes } from "../services/analyze/get-analyze";
+import { getSingleAnalyzes } from "../services/analyze/get-single-analyze";
 
 
 export const analyzeResumeController = async (req: AuthRequest, res: Response, next: NextFunction) => {
@@ -10,11 +11,10 @@ export const analyzeResumeController = async (req: AuthRequest, res: Response, n
         return res.status(400).json({ error: "No file uploaded" });
     }
     const resumePath: string = req.file.path;
-    const jobDescription: string = req.body.description
+    const jobDescription: string = req.body.description;
     try {        
         const analyze = await analyzeResume(resumePath, jobDescription, req.userID.id)
-        console.log(analyze)
-        res.status(201).json(analyze)
+        res.status(200).json(analyze)
     }
     catch (error: unknown) {
         console.log(error)
@@ -30,4 +30,16 @@ export const getAnalyzesController = async(req: AuthRequest, res: Response, next
         next(error)
     }
 
+}
+
+export const getSingleAnalyzesController = async(req: AuthRequest, res:Response, next: NextFunction)=>{
+    const userId = req.userID.id;
+    const analyzeId = req.params.id ;
+    try{
+        const analyze = await getSingleAnalyzes(userId, analyzeId)
+        res.status(200).json(analyze)
+    }
+    catch(error){
+        next(error)
+    }
 }

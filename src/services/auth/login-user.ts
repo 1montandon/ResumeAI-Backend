@@ -21,3 +21,4 @@ export async function loginUser({username, password}: LoginUser) {
   
   return {accessToken}
 }
+
