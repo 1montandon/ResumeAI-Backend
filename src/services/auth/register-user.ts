@@ -20,7 +20,6 @@ export async function registerUser({
   }
 
   // Hash password
-  const hashKey = process.env.HASH_KEY || 10;
   const hashedPassword = await bcrypt.hash(password, 10);
 
   // Create user

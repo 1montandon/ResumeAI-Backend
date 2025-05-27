@@ -1,3 +1,4 @@
+import { Request } from "express"
 export interface RegisterUser{
     username: string
     email: string

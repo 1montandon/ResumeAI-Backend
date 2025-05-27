@@ -10,7 +10,7 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
+  provider = "sqlite"
   url      = env("DATABASE_URL")
 }
 
@@ -25,11 +25,11 @@ model User{
 
 model Analyses{
   id String @id @default(uuid())
+  jobDescription String
   score        Float
   strengths    String
   weaknesses   String
   overview     String  
-  resumeFile    String   // Nome do arquivo ou caminho
   resumeUrl     String   // Caminho/URL do PDF salvo
   user          User     @relation(fields: [userId], references: [id])
   userId        String
