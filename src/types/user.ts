@@ -1,4 +1,3 @@
-import { Request } from "express"
 export interface RegisterUser{
     username: string
     email: string
@@ -7,4 +6,14 @@ export interface RegisterUser{
 export interface LoginUser{
     username: string
     password: string
+}
+import { Analysis } from "./analysis"
+
+export interface User {
+  id: string;
+  email: string;
+  username: string;
+  password: string;
+  analyses?: Analysis[];
+  createdAt: Date;
 }

@@ -2,6 +2,7 @@ import fs from "fs";
 import { generateText } from "ai";
 import { google } from "../../config/geminiai";
 import prisma from "../../prisma/client";
+import { Analysis } from "../../types/analysis";
 
 /**
  * Extracts a JSON string from a Markdown code block.
@@ -21,7 +22,7 @@ export async function analyzeResume(
   resumePath: string,
   jobDescription: string,
   userId: string
-) {
+):Promise<Analysis> {
   const resumeBuffer = fs.readFileSync(resumePath);
 
   const result = await generateText({
