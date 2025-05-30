@@ -30,7 +30,7 @@ model Analyses{
   strengths    String
   weaknesses   String
   overview     String  
-  resumeUrl     String   // Caminho/URL do PDF salvo
+  resumeUrl     String   
   user          User     @relation(fields: [userId], references: [id])
   userId        String
   createdAt     DateTime @default(now())

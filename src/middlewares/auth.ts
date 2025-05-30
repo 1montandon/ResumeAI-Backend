@@ -22,6 +22,6 @@ export function authMiddleware(req: AuthRequest, res: Response, next: NextFuncti
         req.userID = decoded;
         next();
     } catch (err) {
-        next(new HttpError(401, 'Invalid token')); // ✅ erro passado corretamente
+        next(new HttpError(401, 'Invalid token'));
     }
 }

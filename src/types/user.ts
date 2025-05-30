@@ -15,6 +15,13 @@ export interface LoginUser{
     password: string
 }
 
+export interface UpdateUser {
+  id?: string;
+  email?: string;
+  username?: string;
+  password?: string;
+}
+
 import { Analysis } from "./analysis"
 
 export interface User {
