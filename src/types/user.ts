@@ -3,10 +3,18 @@ export interface RegisterUser{
     email: string
     password: string
 }
+
+export interface RegisterUserResponse{
+    id: string
+    username: string
+    email: string
+}
+
 export interface LoginUser{
     username: string
     password: string
 }
+
 import { Analysis } from "./analysis"
 
 export interface User {

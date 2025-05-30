@@ -4,7 +4,8 @@ import bcrypt, { compareSync } from "bcrypt";
 import HttpError from "../../error/error";
 import { generateToken } from "../../utils/generateToken";
 
-export async function loginUser({username, password}: LoginUser) {
+
+export async function loginUser({username, password}: LoginUser): Promise<object> {
  const user = await prisma.user.findFirst({
     where: {
       username: username ,
@@ -19,6 +20,6 @@ export async function loginUser({username, password}: LoginUser) {
   }
   const accessToken = await generateToken(user, process.env.JWT_SECRET || "1313GALO")
   
-  return {accessToken}
+  return { accessToken }
 }
 

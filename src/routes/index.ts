@@ -9,6 +9,6 @@ const routes: Router = Router()
 
 routes.use('/', authRoutes)
 routes.use('/user', authMiddleware, userRoutes )
-routes.use('/analyze',  authMiddleware,analyzeRoutes)
+routes.use('/analysis',  authMiddleware,analyzeRoutes)
 
 export default routes

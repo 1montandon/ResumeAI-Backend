@@ -4,6 +4,8 @@ import { AuthRequest } from "../middlewares/auth";
 import HttpError from "../error/error";
 import { getAnalyses } from "../services/analysis/get-analyses";
 import { getSingleAnalysis } from "../services/analysis/get-single-analysis";
+import { Analysis } from "../types/analysis";
+import { deleteSingleAnalysis } from "../services/analysis/delete-resume";
 
 
 export const analyzeResumeController = async (req: AuthRequest, res: Response, next: NextFunction) => {
@@ -21,7 +23,6 @@ export const analyzeResumeController = async (req: AuthRequest, res: Response, n
         res.status(200).json(analysis)
     }
     catch (error: unknown) {
-        console.log(error)
         next(error) 
     }}
 
@@ -55,15 +56,19 @@ export const getSingleAnalysisController = async(req: AuthRequest, res:Response,
     }
 }
 
-export const removeSingleAnalysis = async(req: AuthRequest, res: Response, next: NextFunction)=>{
+export const deleteSingleAnalysisController = async(req: AuthRequest, res: Response, next: NextFunction)=>{
     if(!req.userID){
         throw new HttpError(401, "Unauthorized!")
     } ;
     if(!req.params.id){
         throw new HttpError(401, "No id!")
     }
+    const userID = req.userID.id
+    const analysisId = req.params.id ;
     try{
-        const 
+        const deletedAnalysis = await deleteSingleAnalysis(userID, analysisId)
+        console.log(deletedAnalysis)
+        res.status(200).json(`Analyses ${deletedAnalysis.id} deleted!`)
     }catch(error){
         next(error)
     }

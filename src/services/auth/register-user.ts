@@ -1,5 +1,5 @@
 import prisma from "../../prisma/client";
-import { RegisterUser } from "../../types/user";
+import { RegisterUser, RegisterUserResponse } from "../../types/user";
 import bcrypt from "bcrypt";
 import HttpError from "../../error/error";
 
@@ -7,8 +7,10 @@ export async function registerUser({
   username,
   email,
   password,
-}: RegisterUser) {
-  // Check if user already exists
+}: RegisterUser) :Promise<RegisterUserResponse> {
+  email = email.toLowerCase().trim();
+  username = username.trim();
+
   const existingUser = await prisma.user.findFirst({
     where: {
       OR: [{ username: username }, { email: email }],
