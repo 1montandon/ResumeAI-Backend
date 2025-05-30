@@ -54,3 +54,17 @@ export const getSingleAnalysisController = async(req: AuthRequest, res:Response,
         next(error)
     }
 }
+
+export const removeSingleAnalysis = async(req: AuthRequest, res: Response, next: NextFunction)=>{
+    if(!req.userID){
+        throw new HttpError(401, "Unauthorized!")
+    } ;
+    if(!req.params.id){
+        throw new HttpError(401, "No id!")
+    }
+    try{
+        const 
+    }catch(error){
+        next(error)
+    }
+}
