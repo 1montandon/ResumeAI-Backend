@@ -1,8 +1,11 @@
 
-```markdown
+
 # ResumeIA-Backend
 
-**ResumeIA-Backend** é a API backend de um projeto em desenvolvimento com fins educacionais. A proposta da aplicação é analisar a compatibilidade entre currículos (CVs) e descrições de vagas de emprego, utilizando inteligência artificial para fornecer insights úteis sobre o quanto um candidato se encaixa nos requisitos de uma vaga.
+**ResumeIA-Backend** é a API backend de um projeto em desenvolvimento com fins educacionais.
+
+A proposta da aplicação é analisar a compatibilidade entre currículos (CVs) e descrições de vagas de emprego, utilizando 
+inteligência artificial para fornecer insights úteis sobre o quanto um candidato se encaixa nos requisitos de uma vaga.
 
 Este projeto está sendo desenvolvido com foco em aprendizado nas tecnologias Node.js, TypeScript, Express e Prisma ORM.
 
