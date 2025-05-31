@@ -10,7 +10,8 @@
     "moduleResolution": "node",               // Resolve módulos do Node.js
     "esModuleInterop": true,                  // Importação de módulos CommonJS
     "forceConsistentCasingInFileNames": true, // Força consistência em letras maiúsculas/minúsculas
-    "skipLibCheck": true                      // Pula checagem de tipos de dependências
+    "skipLibCheck": true,                     // Pula checagem de tipos de dependências
+    "resolveJsonModule": true
   },
   "include": ["src"],
   "exclude": ["node_modules", "dist"]
