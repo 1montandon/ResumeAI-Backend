@@ -1,8 +1,9 @@
 import { Router } from "express";
-import { getMeUserController } from "../controllers/user";
+import { getMeUserController, updateUserController } from "../controllers/user";
 
 const userRoutes: Router = Router();
 
 userRoutes.get("/", getMeUserController);
+userRoutes.patch("/", updateUserController)
 
 export default userRoutes;
