@@ -4,7 +4,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "ts-node-dev --respawn --transpile-only src/server.ts",
-    "build": "tsc",
+    "build": "tsup src",
     "start": "node dist/server.js"
   },
   "keywords": [],
@@ -31,6 +31,7 @@
     "@types/node": "^22.15.19",
     "prisma": "^6.10.1",
     "ts-node-dev": "^2.0.0",
+    "tsup": "^8.5.0",
     "typescript": "^5.8.3"
   }
 }
