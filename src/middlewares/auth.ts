@@ -1,5 +1,5 @@
-import { Request, Response, NextFunction } from 'express';
-import HttpError from '../error/error';
+import type { Request, Response, NextFunction } from 'express';
+import HttpError from '../error/error.ts';
 import jwt from 'jsonwebtoken';
 
 

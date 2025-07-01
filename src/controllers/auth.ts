@@ -1,7 +1,7 @@
-import { Response, Request, NextFunction } from "express"
-import { LoginUser, RegisterUser } from "../types/user";
-import { registerUser } from "../services/auth/register-user";
-import { loginUser } from "../services/auth/login-user";
+import type { Response, Request, NextFunction } from "express";
+import type { LoginUser, RegisterUser } from "../types/user.ts";
+import { registerUser } from "../services/auth/register-user.ts";
+import { loginUser } from "../services/auth/login-user.ts";
 
 export const signUpController = async (req: Request, res: Response, next: NextFunction) => {
     const userData: RegisterUser = req.body;

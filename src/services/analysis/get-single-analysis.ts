@@ -1,6 +1,6 @@
-import prisma from "../../prisma/client";
-import HttpError from "../../error/error";
-import { Analysis } from "../../types/analysis";
+import prisma from "../../prisma/client.ts";
+import HttpError from "../../error/error.ts";
+import type { Analysis } from "../../types/analysis.ts";
 
 export async function getSingleAnalysis(userId: string, analysisId: string): Promise<Analysis> {
     const analysis = await prisma.analyses.findFirst({

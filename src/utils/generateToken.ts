@@ -1,6 +1,6 @@
 import jwt from 'jsonwebtoken';
-import HttpError from '../error/error';
-import { User } from '@prisma/client';
+import HttpError from '../error/error.ts';
+import type { User } from '@prisma/client';
 
 export async function generateToken(user: User, secret: string) {
   try {

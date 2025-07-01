@@ -22,7 +22,7 @@ export interface UpdateUser {
   password?: string;
 }
 
-import { Analysis } from "./analysis"
+import type { Analysis } from "./analysis.ts"
 
 export interface User {
   id: string;

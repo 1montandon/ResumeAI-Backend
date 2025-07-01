@@ -1,8 +1,8 @@
 import fs from "fs";
 import { generateText } from "ai";
-import { google } from "../../config/geminiai";
-import prisma from "../../prisma/client";
-import { Analysis } from "../../types/analysis";
+import { google } from "../../config/geminiai.ts";
+import prisma from "../../prisma/client.ts";
+import type { Analysis } from "../../types/analysis.ts";
 
 /**
  * Extracts a JSON string from a Markdown code block.

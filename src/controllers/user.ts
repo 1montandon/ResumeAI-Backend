@@ -1,9 +1,9 @@
-import { NextFunction, Response } from "express";
-import { AuthRequest } from "../middlewares/auth";
-import HttpError from "../error/error";
-import { getMeUser } from "../services/user/get-me-user";
-import { User } from "@prisma/client";
-import { updateUser } from "../services/user/update-user";
+import type { NextFunction, Response } from "express";
+import type { AuthRequest } from "../middlewares/auth.ts";
+import HttpError from "../error/error.ts";
+import { getMeUser } from "../services/user/get-me-user.ts";
+import type { User } from "@prisma/client";
+import { updateUser } from "../services/user/update-user.ts";
 
 export const getMeUserController = async (req: AuthRequest, res: Response, next: NextFunction) =>{
     if(!req.userID){

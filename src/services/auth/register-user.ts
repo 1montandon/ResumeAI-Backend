@@ -1,7 +1,7 @@
-import prisma from "../../prisma/client";
-import { RegisterUser, RegisterUserResponse } from "../../types/user";
+import prisma from "../../prisma/client.ts";
+import type { RegisterUser, RegisterUserResponse } from "../../types/user.ts";
 import bcrypt from "bcrypt";
-import HttpError from "../../error/error";
+import HttpError from "../../error/error.ts";
 
 export async function registerUser({
   username,

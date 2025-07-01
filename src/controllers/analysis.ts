@@ -1,12 +1,11 @@
-import { Response, Request, NextFunction } from "express"
-import { analyzeResume } from "../services/analysis/analyze-resume";
-import { AuthRequest } from "../middlewares/auth";
-import HttpError from "../error/error";
-import { getAnalyses } from "../services/analysis/get-analyses";
-import { getSingleAnalysis } from "../services/analysis/get-single-analysis";
-import { Analysis } from "../types/analysis";
-import { deleteSingleAnalysis } from "../services/analysis/delete-resume";
-
+import type { Response, Request, NextFunction } from "express"
+import { analyzeResume } from "../services/analysis/analyze-resume.ts";
+import type { AuthRequest } from "../middlewares/auth.ts";
+import HttpError from "../error/error.ts";
+import { getAnalyses } from "../services/analysis/get-analyses.ts";
+import { getSingleAnalysis } from "../services/analysis/get-single-analysis.ts";
+import type { Analysis } from "../types/analysis.ts";
+import { deleteSingleAnalysis } from "../services/analysis/delete-resume.ts";
 
 export const analyzeResumeController = async (req: AuthRequest, res: Response, next: NextFunction) => {
     if(!req.userID){

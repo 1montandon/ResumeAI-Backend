@@ -1,6 +1,6 @@
-import HttpError from "../../error/error";
-import prisma from "../../prisma/client";
-import { User } from "../../types/user";
+import HttpError from "../../error/error.ts";
+import prisma from "../../prisma/client.ts";
+import type { User } from "../../types/user.ts";
 
 export async function getMeUser(userID: string): Promise<User> {
     const userInfo = await prisma.user.findUnique({

@@ -1,12 +1,12 @@
 import { Router } from "express";
-import { analyzeResumeController, deleteSingleAnalysisController, getAnalysesController, getSingleAnalysisController } from "../controllers/analysis";
-import multer from 'multer'
-const upload = multer({dest: 'uploads/'})
-const analyzeRoutes: Router = Router()
+import { analyzeResumeController, deleteSingleAnalysisController, getAnalysesController, getSingleAnalysisController } from "../controllers/analysis.ts";
+import multer from 'multer';
+const upload = multer({ dest: 'uploads/' });
+const analyzeRoutes: Router = Router();
 
-analyzeRoutes.post('/', upload.single('resume'), analyzeResumeController)
-analyzeRoutes.get('/', getAnalysesController)
-analyzeRoutes.get('/:id', getSingleAnalysisController)
-analyzeRoutes.delete('/:id', deleteSingleAnalysisController)
+analyzeRoutes.post('/', upload.single('resume'), analyzeResumeController);
+analyzeRoutes.get('/', getAnalysesController);
+analyzeRoutes.get('/:id', getSingleAnalysisController);
+analyzeRoutes.delete('/:id', deleteSingleAnalysisController);
 
-export default analyzeRoutes
+export default analyzeRoutes;
