@@ -12,6 +12,6 @@
     "forceConsistentCasingInFileNames": true, // Força consistência em letras maiúsculas/minúsculas
     "skipLibCheck": true                      // Pula checagem de tipos de dependências
   },
-  "include": ["src"],
+  "include": ["src", "api"],
   "exclude": ["node_modules", "dist"]
 }

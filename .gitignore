@@ -65,3 +65,4 @@ turbo/
 *.bak
 *.db-wal
 *.db-shm
+.vercel
