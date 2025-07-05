@@ -4,6 +4,7 @@ import { registerUser } from "../services/auth/register-user.ts";
 import { loginUser } from "../services/auth/login-user.ts";
 
 export const signUpController = async (req: Request, res: Response, next: NextFunction) => {
+    // ver se tem email
     const userData: RegisterUser = req.body;
     try {
         const newUser = await registerUser(userData);

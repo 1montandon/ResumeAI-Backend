@@ -1,11 +1,12 @@
 import prisma from "../../prisma/client.ts";
 import type { LoginUser } from "../../types/user.ts";
-import bcrypt, { compareSync } from "bcrypt";
+import { compareSync } from "bcrypt";
 import HttpError from "../../error/error.ts";
 import { generateToken } from "../../utils/generateToken.ts";
 
 
 export async function loginUser({username, password}: LoginUser): Promise<object> {
+  // ver se o email eh valido
  const user = await prisma.user.findFirst({
   where: {
     username: username ,
