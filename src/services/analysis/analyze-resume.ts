@@ -1,8 +1,8 @@
-import fs from "fs";
-import { generateText } from "ai";
-import { google } from "../../config/geminiai.ts";
-import prisma from "../../prisma/client.ts";
-import type { Analysis } from "../../types/analysis.ts";
+import fs from 'node:fs';
+import { generateText } from 'ai';
+import { google } from '../../config/geminiai.ts';
+import prisma from '../../prisma/client.ts';
+import type { Analysis } from '../../types/analysis.ts';
 
 /**
  * Extracts a JSON string from a Markdown code block.
@@ -12,7 +12,7 @@ import type { Analysis } from "../../types/analysis.ts";
 function extractJsonFromMarkdown(markdownString: string): string | null {
   const jsonBlockRegex = /```json\n([\s\S]*?)\n```/;
   const match = markdownString.match(jsonBlockRegex);
-  if (match && match[1]) {
+  if (match?.[1]) {
     return match[1];
   }
   return null;
@@ -22,15 +22,16 @@ export async function analyzeResume(
   resumePath: string,
   jobDescription: string,
   userId: string
-):Promise<Analysis> {
+): Promise<Analysis> {
   const resumeBuffer = fs.readFileSync(resumePath);
 
   const result = await generateText({
     model: google,
-    system: `You are an expert AI assistant designed to analyze job applications. Your goal is to provide candidates with a precise assessment of how well their resume aligns with a given job description.`,
+    system:
+      'You are an expert AI assistant designed to analyze job applications. Your goal is to provide candidates with a precise assessment of how well their resume aligns with a given job description.',
     messages: [
       {
-        role: "user",
+        role: 'user',
         content: `Analyze the provided resume against the job description and generate a JSON object.
 
           Your output MUST be a valid JSON object. DO NOT include any additional text or Markdown code blocks outside or inside of the JSON object itself.
@@ -45,14 +46,14 @@ export async function analyzeResume(
           }`,
       },
       {
-        role: "user",
+        role: 'user',
         content: [
-          { type: "text", text: "Here is the job description:" },
-          { type: "text", text: jobDescription },
-          { type: "text", text: "And here is the candidate's resume:" },
+          { type: 'text', text: 'Here is the job description:' },
+          { type: 'text', text: jobDescription },
+          { type: 'text', text: "And here is the candidate's resume:" },
           {
-            type: "file",
-            mimeType: "application/pdf",
+            type: 'file',
+            mimeType: 'application/pdf',
             data: resumeBuffer,
           },
         ],
@@ -70,11 +71,11 @@ export async function analyzeResume(
     try {
       parsedResult = JSON.parse(result.text);
     } catch (error) {
-      console.error("Failed to parse JSON directly from result.text:", error);
-      throw new Error("Failed to parse analysis result from AI.");
+      console.error('Failed to parse JSON directly from result.text:', error);
+      throw new Error('Failed to parse analysis result from AI.');
     }
   }
-  console.log(userId)
+  console.log(userId);
   if (parsedResult) {
     const analysis = await prisma.analyses.create({
       data: {
@@ -85,13 +86,12 @@ export async function analyzeResume(
         weaknesses: JSON.stringify(parsedResult.weaks), // Converte array para string JSON
         overview: parsedResult.summary, // Usa o summary do parsedResult
         user: {
-          connect: {id: userId}
-        }
+          connect: { id: userId },
+        },
       },
     });
     return analysis; // Retorna o objeto de análise criado no Prisma
-  } else {
-    // Caso parsedResult seja nulo (nenhum JSON foi extraído/parseado)
-    throw new Error("Analysis data could not be parsed from AI response.");
   }
+  // Caso parsedResult seja nulo (nenhum JSON foi extraído/parseado)
+  throw new Error('Analysis data could not be parsed from AI response.');
 }

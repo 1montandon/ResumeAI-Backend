@@ -1,17 +1,20 @@
-import type { Request, Response, NextFunction } from 'express';
-import HttpError from '../error/error.ts';
+import type { NextFunction, Request, Response } from 'express';
 import jwt from 'jsonwebtoken';
-
+import HttpError from '../error/error.ts';
 
 export interface AuthRequest extends Request {
     userID?: any;
 }
 
-export function authMiddleware(req: AuthRequest, res: Response, next: NextFunction){
+export function authMiddleware(
+    req: AuthRequest,
+    res: Response,
+    next: NextFunction
+) {
     const authHeader = req.headers.authorization;
 
-    if (!authHeader || !authHeader.startsWith('Bearer ')) {
-        return next (new HttpError(401, "No token provided"))
+    if (!authHeader?.startsWith('Bearer ')) {
+        return next(new HttpError(401, 'No token provided'));
     }
 
     const token = authHeader.split(' ')[1];

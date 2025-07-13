@@ -1,4 +1,3 @@
-import HttpError from "../../error/error.ts";
 import prisma from "../../prisma/client.ts";
 import type { Analysis } from "../../types/analysis.ts";
 

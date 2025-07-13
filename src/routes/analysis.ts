@@ -1,6 +1,12 @@
-import { Router } from "express";
-import { analyzeResumeController, deleteSingleAnalysisController, getAnalysesController, getSingleAnalysisController } from "../controllers/analysis.ts";
+import { Router } from 'express';
 import multer from 'multer';
+import {
+    analyzeResumeController,
+    deleteSingleAnalysisController,
+    getAnalysesController,
+    getSingleAnalysisController,
+} from '../controllers/analysis.ts';
+
 const upload = multer({ dest: 'uploads/' });
 const analyzeRoutes: Router = Router();
 

@@ -1,74 +1,87 @@
-import type { Response, Request, NextFunction } from "express"
-import { analyzeResume } from "../services/analysis/analyze-resume.ts";
-import type { AuthRequest } from "../middlewares/auth.ts";
-import HttpError from "../error/error.ts";
-import { getAnalyses } from "../services/analysis/get-analyses.ts";
-import { getSingleAnalysis } from "../services/analysis/get-single-analysis.ts";
-import type { Analysis } from "../types/analysis.ts";
-import { deleteSingleAnalysis } from "../services/analysis/delete-resume.ts";
+import type { NextFunction, Response } from 'express';
+import HttpError from '../error/error.ts';
+import type { AuthRequest } from '../middlewares/auth.ts';
+import { analyzeResume } from '../services/analysis/analyze-resume.ts';
+import { deleteSingleAnalysis } from '../services/analysis/delete-resume.ts';
+import { getAnalyses } from '../services/analysis/get-analyses.ts';
+import { getSingleAnalysis } from '../services/analysis/get-single-analysis.ts';
 
-export const analyzeResumeController = async (req: AuthRequest, res: Response, next: NextFunction) => {
-    if(!req.userID){
-        throw new HttpError(401, "Unauthorized!")
+export const analyzeResumeController = async (
+    req: AuthRequest,
+    res: Response,
+    next: NextFunction
+) => {
+    if (!req.userID) {
+        throw new HttpError(401, 'Unauthorized!');
     }
-    if (!req.file || !req.file.path) {
-        throw new HttpError(400, "No file Uploaded!")
+    if (!req?.file?.path) {
+        throw new HttpError(400, 'No file Uploaded!');
     }
-    const userID: string = req.userID.id
+    const userID: string = req.userID.id;
     const resumePath: string = req.file.path;
     const jobDescription: string = req.body.description;
-    try {        
-        const analysis = await analyzeResume(resumePath, jobDescription, userID)
-        res.status(200).json(analysis)
+    try {
+        const analysis = await analyzeResume(resumePath, jobDescription, userID);
+        res.status(200).json(analysis);
+    } catch (error: unknown) {
+        next(error);
     }
-    catch (error: unknown) {
-        next(error) 
-    }}
+};
 
-export const getAnalysesController = async(req: AuthRequest, res: Response, next: NextFunction) => {
-    if(!req.userID){
-        throw new HttpError(401, "Unauthorized!")
+export const getAnalysesController = async (
+    req: AuthRequest,
+    res: Response,
+    next: NextFunction
+) => {
+    if (!req.userID) {
+        throw new HttpError(401, 'Unauthorized!');
     }
-    const userID =req.userID.id
-    try{
-        const analyses = await getAnalyses(userID)
-        res.status(200).json(analyses)
-    }catch(error: unknown){
-        next(error)
-    }
-
-}
-
-export const getSingleAnalysisController = async(req: AuthRequest, res:Response, next: NextFunction)=>{
-    if(!req.userID){
-        throw new HttpError(401, "Unauthorized!")
-    }
-    
     const userID = req.userID.id;
-    const analysisId = req.params.id ;
-    try{
-        const analysis = await getSingleAnalysis(userID, analysisId)
-        res.status(200).json(analysis)
+    try {
+        const analyses = await getAnalyses(userID);
+        res.status(200).json(analyses);
+    } catch (error: unknown) {
+        next(error);
     }
-    catch(error){
-        next(error)
-    }
-}
+};
 
-export const deleteSingleAnalysisController = async(req: AuthRequest, res: Response, next: NextFunction)=>{
-    if(!req.userID){
-        throw new HttpError(401, "Unauthorized!")
-    } ;
-    if(!req.params.id){
-        throw new HttpError(401, "No id!")
+export const getSingleAnalysisController = async (
+    req: AuthRequest,
+    res: Response,
+    next: NextFunction
+) => {
+    if (!req.userID) {
+        throw new HttpError(401, 'Unauthorized!');
     }
-    const userID = req.userID.id
-    const analysisId = req.params.id ;
-    try{
-        const deletedAnalysis = await deleteSingleAnalysis(userID, analysisId)
-        console.log(deletedAnalysis)
-        res.status(200).json(`Analyses ${deletedAnalysis.id} deleted!`)
-    }catch(error){
-        next(error)
+
+    const userID = req.userID.id;
+    const analysisId = req.params.id;
+    try {
+        const analysis = await getSingleAnalysis(userID, analysisId);
+        res.status(200).json(analysis);
+    } catch (error) {
+        next(error);
     }
-}
+};
+
+export const deleteSingleAnalysisController = async (
+    req: AuthRequest,
+    res: Response,
+    next: NextFunction
+) => {
+    if (!req.userID) {
+        throw new HttpError(401, 'Unauthorized!');
+    }
+    if (!req.params.id) {
+        throw new HttpError(401, 'No id!');
+    }
+    const userID = req.userID.id;
+    const analysisId = req.params.id;
+    try {
+        const deletedAnalysis = await deleteSingleAnalysis(userID, analysisId);
+        console.log(deletedAnalysis);
+        res.status(200).json(`Analyses ${deletedAnalysis.id} deleted!`);
+    } catch (error) {
+        next(error);
+    }
+};
