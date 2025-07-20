@@ -1,37 +1,54 @@
+# Resume AI - Backend
 
+Um projeto de backend para análise inteligente de currículos utilizando IA, desenvolvido como projeto de prática e treinamento pessoal.
 
-# ResumeIA-Backend
+## � Tecnologias Utilizadas
 
-**ResumeIA-Backend** é a API backend de um projeto em desenvolvimento com fins educacionais.
+- **Node.js** com TypeScript
+- **Express.js** - Framework web
+- **Prisma ORM** - Gerenciamento de banco de dados
+- **PostgreSQL** - Banco de dados
+- **Google Gemini AI** - IA para análise de currículos
+- **JWT** - Autenticação
+- **Multer** - Upload de arquivos
+- **Docker** - Containerização
+- **Biome** - Linting e formatação de código
 
-A proposta da aplicação é analisar a compatibilidade entre currículos (CVs) e descrições de vagas de emprego, utilizando 
-inteligência artificial para fornecer insights úteis sobre o quanto um candidato se encaixa nos requisitos de uma vaga.
+## 🏗️ Arquitetura e Padrões
 
-Este projeto está sendo desenvolvido com foco em aprendizado nas tecnologias Node.js, TypeScript, Express e Prisma ORM.
+- **MVC Pattern** - Controllers, Services e Routes separados
+- **Service Layer** - Lógica de negócio isolada
+- **Middleware Pattern** - Autenticação e tratamento de erros
+- **Repository Pattern** - Acesso a dados através do Prisma ORM
 
-## 🔧 Tecnologias utilizadas
+## 📁 Estrutura do Projeto
 
-- **Node.js** – Ambiente de execução JavaScript
-- **Express** – Framework web minimalista
-- **Prisma** – ORM para interação com o banco de dados
-- **OpenAI API** – Utilizada para analisar e comparar currículos e vagas com base em IA
-- **PostgreSQL** – Banco de dados relacional
+```
+src/
+├── config/          # Configurações (Gemini AI)
+├── controllers/     # Controladores da aplicação
+├── middlewares/     # Middlewares (auth, error-handler)
+├── prisma/         # Cliente Prisma
+├── routes/         # Definição das rotas
+├── services/       # Lógica de negócio
+├── types/          # Definições de tipos TypeScript
+└── utils/          # Utilitários
+```
 
-## 🚀 Funcionalidades (em desenvolvimento)
+## ⚙️ Configuração e Setup
 
-- Cadastro e Login de usuarios
-- Análise de compatibilidade entre currículo e vaga usando IA
-- API RESTful com rotas organizadas por recursos
+### Pré-requisitos
 
-
-## 🧪 Como rodar localmente
+- Node.js 22+
+- Docker e Docker Compose
+- PostgreSQL
 
 ### 1. Clone o repositório
 
 ```bash
 git clone https://github.com/1montandon/ResumeIA-Backend.git
 cd ResumeIA-Backend
-````
+```
 
 ### 2. Instale as dependências
 
@@ -39,39 +56,67 @@ cd ResumeIA-Backend
 npm install
 ```
 
-### 3. Configure o banco de dados
+### 3. Configure as variáveis de ambiente
 
-Crie um arquivo `.env` baseado no `.env.example` com as informações do seu banco de dados PostgreSQL e chave da API da OpenAI:
+Crie um arquivo `.env` na raiz do projeto:
 
 ```env
-DATABASE_URL=postgresql://usuario:senha@localhost:5432/resumeia
-OPENAI_API_KEY=sua_chave_openai_aqui
+DATABASE_URL="postgresql://docker:docker@localhost:5432/docker"
+JWT_SECRET="seu_jwt_secret_aqui"
+GOOGLE_GENERATIVE_AI_API_KEY="sua_api_key_do_gemini"
+PORT=3000
 ```
 
-### 4. Rode as migrações
+### 4. Inicie o banco de dados
+
+```bash
+docker-compose up -d
+```
+
+### 5. Execute as migrações do banco
 
 ```bash
 npx prisma migrate dev
 ```
 
-### 5. Inicie o servidor
+### 6. Inicie o servidor de desenvolvimento
 
 ```bash
 npm run dev
 ```
 
-## 🤖 Sobre a análise com IA
+## 🚀 Scripts Disponíveis
 
-A aplicação utiliza a API da OpenAI para comparar o conteúdo textual de currículos e descrições de vagas. A IA retorna uma análise textual e um score de compatibilidade, que podem ser usados por recrutadores ou candidatos para entender melhor os pontos fortes e fracos de um currículo frente a uma oportunidade.
+- `npm run dev` - Inicia o servidor em modo desenvolvimento
+- `npm run build` - Gera o build de produção
+- `npm start` - Inicia o servidor de produção
+- `npx prisma studio` - Abre o Prisma Studio para visualizar dados
 
-## 📌 Status
+## 📡 Endpoints Principais
 
-> 🚧 Projeto em desenvolvimento – funcionalidades estão sendo adicionadas e aprimoradas continuamente para fins de estudo e aprendizado.
+- `GET /health` - Health check da aplicação
+- `POST /api/auth/register` - Registro de usuário
+- `POST /api/auth/login` - Login de usuário
+- `POST /api/analysis` - Análise de currículo (autenticado)
+- `GET /api/analysis` - Lista análises do usuário
+- `GET /api/user/me` - Informações do usuário logado
 
-## 📄 Licença
+## 🤖 Funcionalidades
 
-Este projeto é livre para fins de estudo. Nenhuma garantia de produção é oferecida neste estágio.
+- **Análise de Currículos**: Upload de arquivos PDF/DOC e análise com IA
+- **Pontuação e Feedback**: Sistema de scoring e sugestões de melhoria
+- **Gestão de Usuários**: Registro, login e perfil de usuário
+- **Histórico de Análises**: Armazenamento e consulta de análises anteriores
 
-Desenvolvido por [@1montandon](https://github.com/1montandon) 💻
+## � Desenvolvimento
 
+O projeto utiliza:
 
+- **TypeScript** com suporte experimental do Node.js
+- **Biome** para linting e formatação
+- **Watch mode** para desenvolvimento com hot reload
+- **Prisma** para ORM type-safe
+
+---
+
+_Projeto desenvolvido para fins de estudo e prática pessoal._
