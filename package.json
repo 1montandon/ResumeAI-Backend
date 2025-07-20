@@ -23,7 +23,7 @@
     "zod": "^3.25.28"
   },
   "devDependencies": {
-    "@biomejs/biome": "2.0.6",
+    "@biomejs/biome": "2.1.2",
     "@tsconfig/node22": "^22.0.2",
     "@types/bcrypt": "^5.0.2",
     "@types/cors": "^2.8.19",

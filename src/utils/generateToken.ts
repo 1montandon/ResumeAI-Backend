@@ -1,12 +1,12 @@
+import type { User } from '@prisma/client';
 import jwt from 'jsonwebtoken';
 import HttpError from '../error/error.ts';
-import type { User } from '@prisma/client';
 
-export async function generateToken(user: User, secret: string) {
+export function generateToken(user: User, secret: string) {
   try {
-    const accessToken = jwt.sign({ id: user.id }, secret);
-    return accessToken ;
-  } catch (error) {
+    const accessToken = jwt.sign(user.id, secret);
+    return accessToken;
+  } catch {
     throw new HttpError(500, 'Error generating token');
   }
 }

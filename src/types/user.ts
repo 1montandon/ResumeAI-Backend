@@ -1,18 +1,18 @@
 export interface RegisterUser {
-  username: string
-  email: string
-  password: string
+  username: string;
+  email: string;
+  password: string;
 }
 
 export interface RegisterUserResponse {
-  id: string
-  username: string
-  email: string
+  id: string;
+  username: string;
+  email: string;
 }
 
 export interface LoginUser {
-  username: string
-  password: string
+  username: string;
+  password: string;
 }
 
 export interface UpdateUser {
@@ -22,7 +22,7 @@ export interface UpdateUser {
   password?: string;
 }
 
-import type { Analysis } from "./analysis.ts"
+import type { Analysis } from './analysis.ts';
 
 export interface User {
   id: string;

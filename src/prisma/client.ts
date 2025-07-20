@@ -1,9 +1,12 @@
-import { PrismaClient } from '@prisma/client'
+import { PrismaClient } from '@prisma/client';
 
 const prisma = new PrismaClient({
-    log: ['info', 'error', 'warn']
-})
+  log: ['info', 'error', 'warn'],
+});
 
-prisma.$connect().then(() => console.log("Prisma conectado com sucesso")).catch(() => console.log("Falha ao conectar com prisma "))
+prisma
+  .$connect()
+  .then(() => console.log('Prisma conectado com sucesso'))
+  .catch(() => console.log('Falha ao conectar com prisma '));
 
-export default prisma
+export default prisma;

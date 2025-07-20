@@ -1,5 +1,5 @@
-import type { NextFunction, Request, Response } from "express";
-import HttpError from "../error/error.ts";
+import type { NextFunction, Request, Response } from 'express';
+import HttpError from '../error/error.ts';
 
 export function errorHandler(
   err: Error,
@@ -8,9 +8,8 @@ export function errorHandler(
   next: NextFunction
 ): void {
   if (err instanceof HttpError) {
-
     res.status(err.status).json({
-      status: "error",
+      status: 'error',
       message: err.message,
     });
 
@@ -18,7 +17,7 @@ export function errorHandler(
   }
 
   res.status(500).json({
-    status: "error",
-    message: "Erro interno do servidor",
+    status: 'error',
+    message: 'Erro interno do servidor',
   });
 }

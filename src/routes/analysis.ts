@@ -1,10 +1,10 @@
 import { Router } from 'express';
 import multer from 'multer';
 import {
-    analyzeResumeController,
-    deleteSingleAnalysisController,
-    getAnalysesController,
-    getSingleAnalysisController,
+  analyzeResumeController,
+  deleteSingleAnalysisController,
+  getAnalysesController,
+  getSingleAnalysisController,
 } from '../controllers/analysis.ts';
 
 const upload = multer({ dest: 'uploads/' });
