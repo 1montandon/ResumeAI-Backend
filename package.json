@@ -13,9 +13,11 @@
   "description": "",
   "dependencies": {
     "@ai-sdk/google": "^1.2.18",
+    "@google/genai": "^1.16.0",
     "@prisma/client": "^6.10.1",
     "ai": "^4.3.16",
     "bcrypt": "^6.0.0",
+    "cloudinary": "^2.7.0",
     "cors": "^2.8.5",
     "express": "^5.1.0",
     "jsonwebtoken": "^9.0.2",
@@ -23,18 +25,18 @@
     "zod": "^3.25.28"
   },
   "devDependencies": {
-    "@biomejs/biome": "2.1.2",
+    "@biomejs/biome": "^2.2.0",
     "@tsconfig/node22": "^22.0.2",
     "@types/bcrypt": "^5.0.2",
     "@types/cors": "^2.8.19",
     "@types/express": "^5.0.2",
     "@types/jsonwebtoken": "^9.0.9",
-    "@types/multer": "^1.4.12",
+    "@types/multer": "^1.4.13",
     "@types/node": "^22.15.19",
     "prisma": "^6.10.1",
     "ts-node-dev": "^2.0.0",
     "tsup": "^8.5.0",
     "typescript": "^5.8.3",
-    "ultracite": "5.0.32"
+    "ultracite": "^5.2.4"
   }
 }

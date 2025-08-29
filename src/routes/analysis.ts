@@ -7,7 +7,8 @@ import {
   getSingleAnalysisController,
 } from '../controllers/analysis.ts';
 
-const upload = multer({ dest: 'uploads/' });
+const storage = multer.memoryStorage()
+const upload = multer({ storage })
 const analyzeRoutes: Router = Router();
 
 analyzeRoutes.post('/', upload.single('resume'), analyzeResumeController);

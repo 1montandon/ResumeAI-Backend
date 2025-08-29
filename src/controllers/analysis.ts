@@ -14,14 +14,14 @@ export const analyzeResumeController = async (
   if (!req.userID) {
     throw new HttpError(401, 'Unauthorized!');
   }
-  if (!req?.file?.path) {
+  if (!req?.file) {
     throw new HttpError(400, 'No file Uploaded!');
   }
   const userID: string = req.userID;
-  const resumePath: string = req.file.path;
+  const resumeFile: Express.Multer.File = req.file;
   const jobDescription: string = req.body.description;
   try {
-    const analysis = await analyzeResume(resumePath, jobDescription, userID);
+    const analysis = await analyzeResume(resumeFile, jobDescription, userID);
     res.status(200).json(analysis);
   } catch (error: unknown) {
     next(error);

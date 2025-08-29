@@ -2,7 +2,7 @@ import { compareSync } from 'bcrypt';
 import HttpError from '../../error/error.ts';
 import prisma from '../../prisma/client.ts';
 import type { LoginUser } from '../../types/user.ts';
-import { generateToken } from '../../utils/generateToken.ts';
+import { generateToken } from '../../helpers/generateToken.ts';
 
 export async function loginUser({
   username,
