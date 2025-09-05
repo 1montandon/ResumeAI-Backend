@@ -314,11 +314,12 @@ docker run -p 3000:3000 --env-file .env resumeai-backend
 
 ### **Versão 1.1**
 
-- [ ] Parar de salvar os Resumes localmente
-- [ ] Melhorar Prompt
+- [X] Parar de salvar os Resumes localmente
+- [X] Melhorar Prompt
 - [ ] Melhorar organizacao, separa mais em utils e tirar um pouco dos service
 - [ ] Padronizar os retornos de dados da api, ex: apenas arrays (mesmo para um elemento)
 - [ ] Validação de dados com Zod
+- [ ] Autenticação com a biblioteca Better-Auth
 - [ ] Testes Automatizados
 - [ ] Documentação da API (Swagger)
 - [ ] Rate limiting para APIs

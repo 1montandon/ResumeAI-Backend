@@ -13,24 +13,6 @@ export async function geminiAnalyzeResume(
 You are an expert AI assistant specializing in job application analysis. Your primary function is to assess a candidate's resume against a specific job description and provide a precise, structured analysis.
 
 Your task is to analyze the provided resume and job description and generate a single, valid JSON object as your response.
-
-**JSON Schema:**
-Strictly adhere to the following structure:
-{
-  "strong": [
-    "string", // A strong point highly relevant to the job description.
-    "string", // A second strong point.
-    "string"  // A third strong point.
-  ],
-  "weaks": [
-    "string", // A weak point or area for improvement relative to the job.
-    "string", // A second weak point.
-    "string"  // A third weak point.
-  ],
-  "compatibility": number, // A floating-point number between 0.0 and 1.0 representing the compatibility score.
-  "summary": "string" // A concise overview (max 100 words) of the resume's alignment with the job, highlighting key strengths and gaps.
-}
-
 ---
 
 **Job Description:**
