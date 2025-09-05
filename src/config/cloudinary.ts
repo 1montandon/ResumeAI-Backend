@@ -8,6 +8,7 @@ cloudinary.v2.config({
 export async function handleUpload(file: string) {
   const res = await cloudinary.v2.uploader.upload(file, {
     resource_type: "auto",
+    folder: "resumeAi"
   });
   return res;
 }
